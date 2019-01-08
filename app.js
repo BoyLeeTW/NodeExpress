@@ -10,6 +10,8 @@ var app = express();
 
 app.all('/', function(req, res, next) {
 	console.log('Accessing the secret section');
+	console.log(port);
+	next();
 });
 
 app.get('/', function(req, res) {
@@ -56,10 +58,10 @@ app.use(function(err, req, res, next) {
 
 let port = process.env.PORT;
 
-if (port == nill || port == "") {
+if (port == null || port == "") {
 	port = 3000
 };
 
-app.listen(port, function() {
+app.listen(3000, function() {
 	console.log('Example app is running on port 3000!');
 });
