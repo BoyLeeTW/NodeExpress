@@ -8,6 +8,12 @@ var app = express();
 //
 // app.use('/use', logger('dev'));
 
+let port = process.env.PORT;
+
+if (port == null || port == "") {
+	port = 3000
+};
+
 app.all('/', function(req, res, next) {
 	console.log('Accessing the secret section');
 	console.log(port);
@@ -55,12 +61,6 @@ app.use(function(err, req, res, next) {
 	console.error(err.stack);
 	res.status(500).send('Something broke!');
 });
-
-let port = process.env.PORT;
-
-if (port == null || port == "") {
-	port = 3000
-};
 
 app.listen(3000, function() {
 	console.log('Example app is running on port 3000!');
