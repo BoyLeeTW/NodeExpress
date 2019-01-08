@@ -8,9 +8,9 @@ var app = express();
 //
 // app.use('/use', logger('dev'));
 
-// app.all('/', function(req, res) {
-// 	console.log('Accessing the secret section');
-// });
+app.all('/', function(req, res, next) {
+	console.log('Accessing the secret section');
+});
 
 app.get('/', function(req, res) {
 	res.send('<h1>Root!<h1>')
@@ -54,6 +54,12 @@ app.use(function(err, req, res, next) {
 	res.status(500).send('Something broke!');
 });
 
-app.listen(3000, function() {
+let port = process.env.PORT;
+
+if (port == nill || port == "") {
+	port = 3000
+};
+
+app.listen(port, function() {
 	console.log('Example app is running on port 3000!');
 });
