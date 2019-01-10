@@ -100,7 +100,7 @@ app.get('/', function(req, res) {
 	res.write(
 		'<script>function post(input) { console.log(input);}</script>'
 	)
-	// res.end();
+	res.end();
 
 	// var options = {
 	// 	host: hostname,
