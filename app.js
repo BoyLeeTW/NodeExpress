@@ -6,6 +6,8 @@ var express = require('express');
 //
 // var createTable = require('./MySQL/createTable');
 
+let mySQLHandler = require('mySQLHandler');
+
 var app = express();
 
 var bodyParser = require('body-parser');
@@ -33,7 +35,10 @@ app.get('/', function(req, res) {
 
 	res.write('<script>function Query() {document.getElementById("Query").innerHTML = "AGAIN?"; console.log("Query!");}</script>');
 
-	res.end();
+	mySQLHandler.connect(function(result) {
+		res.send(result)
+	});
+	// res.end();
 });
 
 app.get('/createTable', function(req, res) {
