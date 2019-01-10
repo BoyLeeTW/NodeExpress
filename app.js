@@ -1,8 +1,14 @@
-process.env.NODE_ENV = 'production';
-
 var express = require('express');
 // const logger = require('morgan');
+
+var createDatabase = require('./MySQL/createDatabase');
+var query = require('./MySQL/select');
+
 var app = express();
+
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ entended: false }));
 
 // app.use(logger('dev'));
 //
@@ -11,14 +17,26 @@ var app = express();
 app.all('/', function(req, res, next) {
 	console.log('Accessing the secret section');
 	next();
+}, function(req, res, next) {
+	console.log('second function!');
+	next();
 });
 
 app.get('/', function(req, res) {
-	res.send('<h1>Root!<h1>')
+	// res.send('<h1>Root!<h1>')
+	query.query()
+	setTimeout(function() {
+		res.redirect('/about');
+	}, 3000);
+});
+
+app.get('/users/:uderId/books/:bookId', function(req, res) {
+	res.send(req.params);
 });
 
 app.post('/', function(req, res) {
 	console.log('POST');
+	console.log(req.body.id);
 	res.send('<h1>POSTRoot!<h1>')
 });
 
