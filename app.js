@@ -25,10 +25,14 @@ app.all('/', function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
-	// res.send('<h1>Root!<h1>')
-	setTimeout(function() {
-		res.redirect('/about');
-	}, 3000);
+	res.write(`<input type="button" onclick="javascript:location.href='http://localhost:3000/about'" value = "BackToHomePage"</input>
+			<button id="Query" onclick="Query()">Query</button><br>
+			<button>Query</button><br>
+			<button>Query</button>`);
+
+	res.write('<script>function Query() {document.getElementById("Query").innerHTML = "AGAIN?"; console.log("Query!");}</script>');
+
+	res.end();
 });
 
 app.get('/createTable', function(req, res) {
