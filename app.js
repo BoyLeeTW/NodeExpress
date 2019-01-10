@@ -4,6 +4,8 @@ var express = require('express');
 var createDatabase = require('./MySQL/createDatabase');
 var query = require('./MySQL/select');
 
+var createTable = require('./MySQL/createTable');
+
 var app = express();
 
 var bodyParser = require('body-parser');
@@ -28,6 +30,11 @@ app.get('/', function(req, res) {
 	setTimeout(function() {
 		res.redirect('/about');
 	}, 3000);
+});
+
+app.get('/createTable', function(req, res) {
+	// res.send('<h1>Root!<h1>')
+	createTable.createTable()
 });
 
 app.get('/users/:uderId/books/:bookId', function(req, res) {
