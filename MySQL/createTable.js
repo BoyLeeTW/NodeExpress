@@ -7,6 +7,8 @@ let connection = mysql.createConnection({
     database: 'heroku_83260ccd1f595f9'
 });
 
+mysql://be2486c3e96d49:f80c050d@us-cdbr-iron-east-01.cleardb.net/heroku_83260ccd1f595f9?reconnect=true
+
 function createTable() {
     connection.connect(function(err) {
         if (err) throw err;

@@ -26,7 +26,6 @@ app.all('/', function(req, res, next) {
 
 app.get('/', function(req, res) {
 	// res.send('<h1>Root!<h1>')
-	query.query()
 	setTimeout(function() {
 		res.redirect('/about');
 	}, 3000);
