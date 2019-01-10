@@ -1,10 +1,10 @@
 var express = require('express');
 // const logger = require('morgan');
 
-var createDatabase = require('./MySQL/createDatabase');
-var query = require('./MySQL/select');
-
-var createTable = require('./MySQL/createTable');
+// var createDatabase = require('./MySQL/createDatabase');
+// var query = require('./MySQL/select');
+//
+// var createTable = require('./MySQL/createTable');
 
 var app = express();
 
@@ -25,7 +25,8 @@ app.all('/', function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
-	res.write(`<input type="button" onclick="javascript:location.href='http://localhost:3000/about'" value = "BackToHomePage"</input>
+	res.set('Content-Type', 'text/html');
+	res.write(`<input type="button" onclick="javascript:location.href='./about'" value = "BackToHomePage"></input>
 			<button id="Query" onclick="Query()">Query</button><br>
 			<button>Query</button><br>
 			<button>Query</button>`);
@@ -36,7 +37,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/createTable', function(req, res) {
-	createTable.createTable()
+	// createTable.createTable()
 	res.send('<h1>CreateTable!<h1>')
 });
 
