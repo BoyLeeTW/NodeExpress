@@ -1,22 +1,16 @@
 var express = require('express');
 // const logger = require('morgan');
 
-// var createDatabase = require('./MySQL/createDatabase');
-// var query = require('./MySQL/select');
-//
-// var createTable = require('./MySQL/createTable');
-
 let mySQLHandler = require('./mySQLHandler');
-
+let requestSender = require('./RequestSender');
 var app = express();
+
+let os = require('os');
+let hostname = os.hostname();
 
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ entended: false }));
-
-// app.use(logger('dev'));
-//
-// app.use('/use', logger('dev'));
 
 app.all('/', function(req, res, next) {
 	console.log('Accessing the secret section');
@@ -28,18 +22,113 @@ app.all('/', function(req, res, next) {
 
 app.get('/', function(req, res) {
 	res.set('Content-Type', 'text/html');
-	res.write(`<input type="button" onclick="javascript:location.href='./about'" value = "BackToHomePage"></input>
-			<button id="Query" onclick="Query()">Query</button><br>
-			<button>Query</button><br>
-			<button>Query</button>`);
+	res.write('<h1>MySQL DB on Heroku</h1>')
+	res.write(`<button onclick="Connect()">Connect</button><br>
+			<button onclick="Query()">Query</button><br>
+			<button onclick="Insert()">Insert</button><br>
+			<button onclick="Update()">Update</button><br>
+			<button onclick="Delete()">Delete</button><br>`
+	)
 
-	res.write('<script>function Query() {document.getElementById("Query").innerHTML = "AGAIN?"; console.log("Query!");}</script>');
+	// res.write(
+	// 	'<script>' +
+	// 	'function down(){' +
+	// 		'var url = ./' +
+	// 		'var request = new XMLHttpRequest();' +
+	// 		'request.open("GET", url);' +
+	// 	'}' +
+	// 	'</script>'
+	// )
 
-	mySQLHandler.connect(function(result) {
-		res.send(result)
-	});
+	res.write(
+		'<script>' +
+		'function Query() {' +
+			'post("Query!");' +
+		'}' +
+		'</script>'
+	)
+
+	// res.write(
+	// 	'<script>' +
+	// 	'function Connect() {' +
+	// 		'mySQLHandler.connect(function(result) {' +
+	// 			'post(result);' +
+	// 		'});' +
+	// 	'};'
+	// 	'</script>'
+	// )
+	res.write(
+		`<script>function Connect() {
+			mySQLHandler.connect(function(reslut) {
+				post(result)
+			})
+		}</script>`
+	)
+
+	res.write(
+		'<script>' +
+		'function Insert() {' +
+			'post("Insert!")' +
+		'}' +
+		'</script>'
+	)
+
+	res.write(
+		'<script>' +
+		'function Update() {' +
+		'post("Update!")' +
+		'}' +
+		'</script>'
+	)
+
+	res.write(
+		'<script>' +
+		'function Update() {' +
+			'post("Delete!")' +
+		'}' +
+		'</script>'
+	)
+
+	res.write(
+		'<script>' +
+		'function sendRequest(options, completion) {' +
+			'post("Connect!")' +
+		'}' +
+		'</script>'
+	)
+
+	res.write(
+		'<script>function post(input) { console.log(input);}</script>'
+	)
 	// res.end();
+
+	// var options = {
+	// 	host: hostname,
+	// 	port: 3000,
+	// 	path: '/about',
+	// 	method: 'GET'
+	// };
+	//
+	// requestSender.request(options, function(result) {
+	// 	res.send(result);
+	// });
 });
+
+app.get('/connect', function(req, res) {
+
+	var options = {
+		host: hostname,
+		port: 3000,
+		path: '/about',
+		method: 'GET'
+	};
+
+	requestSender.request(options, function(result) {
+		res.send(result);
+	});
+})
+
+
 
 app.get('/createTable', function(req, res) {
 	// createTable.createTable()
