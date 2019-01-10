@@ -32,8 +32,8 @@ app.get('/', function(req, res) {
 });
 
 app.get('/createTable', function(req, res) {
-	// res.send('<h1>Root!<h1>')
 	createTable.createTable()
+	res.send('<h1>CreateTable!<h1>')
 });
 
 app.get('/users/:uderId/books/:bookId', function(req, res) {
