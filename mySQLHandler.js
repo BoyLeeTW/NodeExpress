@@ -39,7 +39,7 @@ function query(completion) {
 
     connection.query(sql, function(err, result, fields) {
         if (err) {
-            completion(error)
+            completion(err)
             return
         }
         completion(result);
