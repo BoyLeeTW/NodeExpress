@@ -58,6 +58,12 @@ app.get('/insert', function(req, res) {
 	})
 });
 
+app.get('/update', function(req, res) {
+	mySQLHandler.updateInfo(req.query.name, req.query.address, function(result) {
+		res.send(result)
+	})
+});
+
 app.get('/users/:uderId/books/:bookId', function(req, res) {
 	res.send(req.params);
 });

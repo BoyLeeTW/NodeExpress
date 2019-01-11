@@ -6,7 +6,6 @@
     <script src="/app.js"></script>
 </head>
 <body>
-<p>this is a real index.html</p>
 <h1>MySQL DB on Heroku</h1>
 <!--<button onclick="Connect()">Connect</button><br>-->
 
@@ -16,15 +15,34 @@
     <!--<input type="submit" value="Connect">-->
 <!--</form>-->
 
+<form action="/queryAll" method="get" target="_blank">
+    <input type="submit" value="Query All">
+</form>
+
+<br>
+
 <form action="/insert" method="get" target="_blank">
     Name: <input type="text" name="name"><br>
     Address: <input type="text" name="address"><br>
     <input type="submit" value="Insert">
 </form>
 
-<form action="/queryAll" method="get" target="_blank">
-    <input type="submit" value="Query All">
+<br>
+
+<form action="/update" method="get" target="_blank">
+    Name(Key): <input type="text" name="name"><br>
+    Address: <input type="text" name="address"><br>
+    <input type="submit" value="Update">
 </form>
+
+<br>
+
+<form action="/delete" method="get" target="_blank">
+    Name(Key): <input type="text" name="name"><br>
+    Address: <input type="text" name="address"><br>
+    <input type="submit" value="Delete">
+</form>
+
 
 <!--<form action="/disconnect" method="get" target="_blank">-->
     <!--<input type="submit" value="Disconnect">-->

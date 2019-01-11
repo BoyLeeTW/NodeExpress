@@ -55,11 +55,14 @@ function query(completion) {
     });
 }
 
-function updateInfo() {
-    var sql = "UPDATE customers SET address = 'Canyon 123' WHERE address = 'Valley 345'";
+function updateInfo(name, address, completion) {
+    var sql = `UPDATE customers SET address = '${address}' WHERE name = '${name}'`
     connection.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log(result.affectedRows + " record(s) updated");
+        if (err) {
+            completion(err)
+            return
+        }
+        completion(result.affectedRows + " record(s) updated");
     });
 }
 
