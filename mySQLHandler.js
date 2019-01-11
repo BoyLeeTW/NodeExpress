@@ -34,18 +34,6 @@ function insertInfo() {
 }
 
 function query(completion) {
-    // connection.connect(function(err) {
-    //     if (err) throw err;
-    //     console.log('Connected!');
-    //     let sql = 'SELECT name, address FROM customers';
-    //
-    //     connection.query(sql, function(err, result, fields) {
-    //         if (err) throw err;
-    //         // console.log(fields);
-    //         console.log(result);
-    //         // console.log('Result: ' + result);
-    //     });
-    // });
 
     let sql = 'SELECT name, address FROM customers';
 
@@ -68,10 +56,21 @@ function updateInfo() {
 
 function deleteInfo() {
     var sql = "DELETE FROM customers WHERE address = 'Mountain 21'";
-    con.query(sql, function (err, result) {
+    connection.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Number of records deleted: " + result.affectedRows);
     });
+}
+
+function disconnect(completion) {
+    connection.release();
+
+    if (err) {
+        completion(err)
+        return
+    }
+
+    completion('disconnect success!')
 }
 
 exports.query = query
@@ -80,3 +79,4 @@ exports.connect = connect
 exports.insertInfo = insertInfo
 exports.updateInfo = updateInfo
 exports.deleteInfo = deleteInfo
+exports.disconnect = disconnect
