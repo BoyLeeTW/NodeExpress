@@ -65,11 +65,6 @@ function deleteInfo() {
 function disconnect(completion) {
     connection.end();
 
-    if (err) {
-        completion(err)
-        return
-    }
-
     completion('disconnect success!')
 }
 
