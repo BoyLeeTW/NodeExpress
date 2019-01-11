@@ -144,7 +144,7 @@ app.get('/connect', function(req, res) {
 	// });
 
 	mySQLHandler.connect(function(reslut) {
-		post(result)
+		res.send(result)
 	})
 })
 
