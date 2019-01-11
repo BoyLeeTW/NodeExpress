@@ -63,7 +63,7 @@ function deleteInfo() {
 }
 
 function disconnect(completion) {
-    connection.release();
+    connection.end();
 
     if (err) {
         completion(err)
