@@ -33,14 +33,28 @@ function insertInfo() {
     });
 }
 
-function query() {
+function query(completion) {
+    // connection.connect(function(err) {
+    //     if (err) throw err;
+    //     console.log('Connected!');
+    //     let sql = 'SELECT name, address FROM customers';
+    //
+    //     connection.query(sql, function(err, result, fields) {
+    //         if (err) throw err;
+    //         // console.log(fields);
+    //         console.log(result);
+    //         // console.log('Result: ' + result);
+    //     });
+    // });
+
     let sql = 'SELECT name, address FROM customers';
 
     connection.query(sql, function(err, result, fields) {
-        if (err) throw err;
-        // console.log(fields);
-        console.log(result);
-        // console.log('Result: ' + result);
+        if (err) {
+            completion(error)
+            return
+        }
+        completion(result);
     });
 }
 
