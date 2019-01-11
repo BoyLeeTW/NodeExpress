@@ -24,12 +24,15 @@ function createTable(completion) {
     });
 }
 
-function insertInfo() {
-    let sql = 'INSERT INTO customers (name, address) VALUES ("Michelle", "Blue Village 1")';
-    connection.query(sql, function(err, result) {
-        if (err) throw err;
-        console.log('1 record inserted, ID: ' + result.insertId);
-        console.log('Result: ' + result);
+function insertInfo(name, address, completion) {
+    let sql = 'INSERT INTO customers (name, address) VALUES ?';
+    let value = [name, address]
+    connection.query(sql, [value], function(err, result) {
+        if (err) {
+            completion(err);
+            return
+        }
+        completion('Result: ' + result);
     });
 }
 
