@@ -143,7 +143,7 @@ app.get('/connect', function(req, res) {
 	// 	res.send(result);
 	// });
 
-	mySQLHandler.connect(function(reslut) {
+	mySQLHandler.connect(function(result) {
 		res.send(result)
 	})
 })
