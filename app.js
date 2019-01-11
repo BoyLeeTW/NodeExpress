@@ -132,17 +132,20 @@ app.get('/', function(req, res) {
 });
 
 app.get('/connect', function(req, res) {
+	// var options = {
+	// 	host: hostname,
+	// 	port: 3000,
+	// 	path: '/connect',
+	// 	method: 'GET'
+	// };
+	//
+	// requestSender.request(options, function(result) {
+	// 	res.send(result);
+	// });
 
-	var options = {
-		host: hostname,
-		port: 3000,
-		path: '/connect',
-		method: 'GET'
-	};
-
-	requestSender.request(options, function(result) {
-		res.send(result);
-	});
+	mySQLHandler.connect(result) {
+		res.send(result)
+	}
 })
 
 
