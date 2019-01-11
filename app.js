@@ -20,7 +20,22 @@ app.all('/', function(req, res, next) {
 	next();
 });
 
+function Connect() {
+	console.log('connect')
+}
+
+app.use(express.static('public'));
+
+app.get('/js', function(req, res) {
+	res.write
+})
+
 app.get('/', function(req, res) {
+
+	res.sendfile(__dirname + '/index.html', function(err) {
+		if (err) res.send(404);
+	});
+	/*
 	res.set('Content-Type', 'text/html');
 	res.write('<h1>MySQL DB on Heroku</h1>')
 	res.write(`<button onclick="Connect()">Connect</button><br>
@@ -29,6 +44,7 @@ app.get('/', function(req, res) {
 			<button onclick="Update()">Update</button><br>
 			<button onclick="Delete()">Delete</button><br>`
 	)
+	res.write('<script src>localhost</script>')
 
 	// res.write(
 	// 	'<script>' +
@@ -112,6 +128,7 @@ app.get('/', function(req, res) {
 	// requestSender.request(options, function(result) {
 	// 	res.send(result);
 	// });
+	*/
 });
 
 app.get('/connect', function(req, res) {
@@ -119,7 +136,7 @@ app.get('/connect', function(req, res) {
 	var options = {
 		host: hostname,
 		port: 3000,
-		path: '/about',
+		path: '/connect',
 		method: 'GET'
 	};
 
