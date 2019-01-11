@@ -20,139 +20,30 @@ app.all('/', function(req, res, next) {
 	next();
 });
 
-function Connect() {
-	console.log('connect')
-}
-
 app.use(express.static('public'));
 
-app.get('/js', function(req, res) {
-	res.write
-})
-
 app.get('/', function(req, res) {
-
 	res.sendfile(__dirname + '/index.html', function(err) {
 		if (err) res.send(404);
 	});
-	/*
-	res.set('Content-Type', 'text/html');
-	res.write('<h1>MySQL DB on Heroku</h1>')
-	res.write(`<button onclick="Connect()">Connect</button><br>
-			<button onclick="Query()">Query</button><br>
-			<button onclick="Insert()">Insert</button><br>
-			<button onclick="Update()">Update</button><br>
-			<button onclick="Delete()">Delete</button><br>`
-	)
-	res.write('<script src>localhost</script>')
-
-	// res.write(
-	// 	'<script>' +
-	// 	'function down(){' +
-	// 		'var url = ./' +
-	// 		'var request = new XMLHttpRequest();' +
-	// 		'request.open("GET", url);' +
-	// 	'}' +
-	// 	'</script>'
-	// )
-
-	res.write(
-		'<script>' +
-		'function Query() {' +
-			'post("Query!");' +
-		'}' +
-		'</script>'
-	)
-
-	// res.write(
-	// 	'<script>' +
-	// 	'function Connect() {' +
-	// 		'mySQLHandler.connect(function(result) {' +
-	// 			'post(result);' +
-	// 		'});' +
-	// 	'};'
-	// 	'</script>'
-	// )
-	res.write(
-		`<script>function Connect() {
-			mySQLHandler.connect(function(reslut) {
-				post(result)
-			})
-		}</script>`
-	)
-
-	res.write(
-		'<script>' +
-		'function Insert() {' +
-			'post("Insert!")' +
-		'}' +
-		'</script>'
-	)
-
-	res.write(
-		'<script>' +
-		'function Update() {' +
-		'post("Update!")' +
-		'}' +
-		'</script>'
-	)
-
-	res.write(
-		'<script>' +
-		'function Update() {' +
-			'post("Delete!")' +
-		'}' +
-		'</script>'
-	)
-
-	res.write(
-		'<script>' +
-		'function sendRequest(options, completion) {' +
-			'post("Connect!")' +
-		'}' +
-		'</script>'
-	)
-
-	res.write(
-		'<script>function post(input) { console.log(input);}</script>'
-	)
-	res.end();
-
-	// var options = {
-	// 	host: hostname,
-	// 	port: 3000,
-	// 	path: '/about',
-	// 	method: 'GET'
-	// };
-	//
-	// requestSender.request(options, function(result) {
-	// 	res.send(result);
-	// });
-	*/
 });
 
 app.get('/connect', function(req, res) {
-	// var options = {
-	// 	host: hostname,
-	// 	port: 3000,
-	// 	path: '/connect',
-	// 	method: 'GET'
-	// };
-	//
-	// requestSender.request(options, function(result) {
-	// 	res.send(result);
-	// });
-
 	mySQLHandler.connect(function(result) {
 		res.send(result)
 	})
 })
 
-
-
 app.get('/createTable', function(req, res) {
-	// createTable.createTable()
-	res.send('<h1>CreateTable!<h1>')
+	mySQLHandler.createTable(function(result) {
+		res.send(result)
+	})
+});
+
+app.get('/queryAll', function(req, res) {
+	mySQLHandler.query(function(result) {
+		res.send(result)
+	})
 });
 
 app.get('/users/:uderId/books/:bookId', function(req, res) {
@@ -205,5 +96,5 @@ if (port == null || port == "") {
 };
 
 app.listen(port, function() {
-	console.log('Example app is running on port ' + port);
+	console.log('app is running on port ' + port);
 });

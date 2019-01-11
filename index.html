@@ -9,15 +9,21 @@
 <p>this is a real index.html</p>
 <h1>MySQL DB on Heroku</h1>
 <button onclick="Connect()">Connect</button><br>
-<button onclick="Query()">Query</button><br>
-<button onclick="Insert()">Insert</button><br>
-<button onclick="Update()">Update</button><br>
-<button onclick="Delete()">Delete</button><br>
 
 <form action="/connect" method="get" target="_blank">
     <!--First name: <input type="text" name="fname"><br>-->
     <!--Last name: <input type="text" name="lname"><br>-->
     <input type="submit" value="Connect">
+</form>
+
+<form action="/insert" method="get" target="_blank">
+    Name: <input type="text" name="name"><br>
+    Address: <input type="text" name="address"><br>
+    <input type="submit" value="Insert">
+</form>
+
+<form action="/queryAll" method="get" target="_blank">
+    <input type="submit" value="Query All">
 </form>
 
 
