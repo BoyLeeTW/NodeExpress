@@ -64,6 +64,12 @@ app.get('/update', function(req, res) {
 	})
 });
 
+app.get('/delete', function(req, res) {
+	mySQLHandler.deleteInfo(req.query.name, req.query.address, function(result) {
+		res.send(result)
+	})
+});
+
 app.get('/users/:uderId/books/:bookId', function(req, res) {
 	res.send(req.params);
 });

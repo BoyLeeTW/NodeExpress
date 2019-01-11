@@ -62,15 +62,18 @@ function updateInfo(name, address, completion) {
             completion(err)
             return
         }
-        completion(result.affectedRows + " record(s) updated");
+        completion("Number of record updated: " + result.affectedRows);
     });
 }
 
-function deleteInfo() {
-    var sql = "DELETE FROM customers WHERE address = 'Mountain 21'";
+function deleteInfo(name, address, completion) {
+    var sql = `DELETE FROM customers WHERE address = '${address}' && name = '${name}'`;
     connection.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log("Number of records deleted: " + result.affectedRows);
+        if (err) {
+            completion(err)
+            return
+        }
+        completion("Number of record deleted: " + result.affectedRows);
     });
 }
 
