@@ -53,7 +53,7 @@ app.get('/queryAll', function(req, res) {
 });
 
 app.get('/insert', function(req, res) {
-	mySQLHandler.insertInfo(req.params.name, req.params.address, function(result) {
+	mySQLHandler.insertInfo(req.query.name, req.query.address, function(result) {
 		res.send(result)
 	})
 });
