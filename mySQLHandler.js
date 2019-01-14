@@ -1,15 +1,10 @@
 let mysql = require('mysql');
+let mySQLCredentialKeeper = require('./mySQLCredentialKeeper');
 
-let connection = mysql.createConnection({
-    host: 'us-cdbr-iron-east-01.cleardb.net',
-    user: 'be2486c3e96d49',
-    password: 'f80c050d',
-    database: 'heroku_83260ccd1f595f9'
-    // host: 'localhost',
-    // user: 'root',
-    // password: '123456',
-    // database: 'mydb'
-});
+
+let connection = mysql.createConnection(
+    mySQLCredentialKeeper.testConfig
+);
 
 function connect(completion) {
     connection.connect(function(err) {
