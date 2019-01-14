@@ -9,7 +9,6 @@ let connection = mysql.createConnection({
     // user: 'root',
     // password: '123456',
     // database: 'mydb'
-
 });
 
 function connect(completion) {
@@ -48,7 +47,7 @@ function query(completion) {
 
     connection.query(sql, function(err, result, fields) {
         if (err) {
-            completion(err)
+            completion(err);
             return
         }
         completion(result);
@@ -59,7 +58,7 @@ function updateInfo(name, address, completion) {
     var sql = `UPDATE customers SET address = '${address}' WHERE name = '${name}'`
     connection.query(sql, function (err, result) {
         if (err) {
-            completion(err)
+            completion(err);
             return
         }
         completion("Number of record updated: " + result.affectedRows);
@@ -70,7 +69,7 @@ function deleteInfo(name, address, completion) {
     var sql = `DELETE FROM customers WHERE address = '${address}' && name = '${name}'`;
     connection.query(sql, function (err, result) {
         if (err) {
-            completion(err)
+            completion(err);
             return
         }
         completion("Number of record deleted: " + result.affectedRows);
@@ -83,10 +82,10 @@ function disconnect(completion) {
     completion('disconnect success!')
 }
 
-exports.query = query
-exports.createTable = createTable
-exports.connect = connect
-exports.insertInfo = insertInfo
-exports.updateInfo = updateInfo
-exports.deleteInfo = deleteInfo
-exports.disconnect = disconnect
+exports.query = query;
+exports.createTable = createTable;
+exports.connect = connect;
+exports.insertInfo = insertInfo;
+exports.updateInfo = updateInfo;
+exports.deleteInfo = deleteInfo;
+exports.disconnect = disconnect;

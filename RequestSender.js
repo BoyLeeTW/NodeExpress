@@ -7,8 +7,8 @@ function request(options, completion) {
         response.setEncoding('utf8');
         response.on('data', function (chunk) {
             console.log('BODY: ' + chunk);
-            completion(chunk)
-            return
+            completion(chunk);
+            return;
         });
     });
 
@@ -19,4 +19,4 @@ function request(options, completion) {
     req.end();
 }
 
-exports.request = request
+exports.request = request;

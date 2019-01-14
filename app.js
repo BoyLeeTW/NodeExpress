@@ -32,13 +32,13 @@ app.get('/connect', function(req, res) {
 	mySQLHandler.connect(function(result) {
 		res.send(result)
 	})
-})
+});
 
 app.get('/disconnect', function(req, res) {
 	mySQLHandler.disconnect(function(result) {
 		res.send(result)
 	})
-})
+});
 
 app.get('/createTable', function(req, res) {
 	mySQLHandler.createTable(function(result) {
