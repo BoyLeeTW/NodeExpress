@@ -1,7 +1,7 @@
 let http = require('http');
 
 function request(options, completion) {
-    var req = http.request(options, function(response) {
+    let req = http.request(options, function(response) {
         console.log('STATUS: ' + response.statusCode);
         console.log('HEADERS: ' + JSON.stringify(response.headers));
         response.setEncoding('utf8');

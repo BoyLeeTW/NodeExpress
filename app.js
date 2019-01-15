@@ -1,14 +1,14 @@
-var express = require('express');
+let express = require('express');
 // const logger = require('morgan');
 
 let mySQLHandler = require('./mySQLHandler');
 let requestSender = require('./RequestSender');
-var app = express();
+let app = express();
 
 let os = require('os');
 let hostname = os.hostname();
 
-var bodyParser = require('body-parser');
+let bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ entended: false }));
 

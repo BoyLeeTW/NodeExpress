@@ -50,7 +50,7 @@ function query(completion) {
 }
 
 function updateInfo(name, address, completion) {
-    var sql = `UPDATE customers SET address = '${address}' WHERE name = '${name}'`
+    let sql = `UPDATE customers SET address = '${address}' WHERE name = '${name}'`
     connection.query(sql, function (err, result) {
         if (err) {
             completion(err);
@@ -61,7 +61,7 @@ function updateInfo(name, address, completion) {
 }
 
 function deleteInfo(name, address, completion) {
-    var sql = `DELETE FROM customers WHERE address = '${address}' && name = '${name}'`;
+    let sql = `DELETE FROM customers WHERE address = '${address}' && name = '${name}'`;
     connection.query(sql, function (err, result) {
         if (err) {
             completion(err);
